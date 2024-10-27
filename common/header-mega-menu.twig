@@ -1,47 +1,137 @@
-<div class="dark d-none d-lg-block" style="position: relative">
-    <div class="div-bg-absolute menu-header-theme-bg-primary"></div>
-    <div class="container">
-        <div class="top-main-menu-wrapper">
-            <nav role="navigation" class="d-flex flex-grow-1 main-nav-wrapper">
+<div class="dark-menu" style="position: relative; color: black;">
+	<div class="div-bg-absolute menu-header-theme-bg-primary"></div>
+	<div class="container">
+		<div class="top-main-menu-wrapper">
+			<nav role="navigation" class="main-nav-wrapper">
 
-                <ul class="main-nav d-flex flex-grow-1 flex-wrap menu-header-theme-text-for-primary-bg">
-                    
-                    {% for menu in main_navigation_menu.items %}
-                        {% if menu.url %}
-                            <li class="top-level-link {% if menu.slug == 'all_categories' %} all-categories {% endif %}" >
-                                <a href="{{ menu.url }}"
-                                        {% if menu.items | length > 0 %} class="mega-menu" {% endif %} ><span>{{ menu.name }}</span></a>
-                                {% if menu.items | length > 0 %}
-                                    <div class="sub-menu-block">
-                                        <div class="row">
-                                            {% for menu_sub in menu.items %}
-                                                <div class="col-md-4 col-lg-4 col-sm-4">
-                                                    {% if menu_sub.items | length > 0 %}
-                                                        <h2 class="sub-menu-head">
-                                                            <a style="font-size: 1.16rem; color: inherit" href="{{ menu_sub.url }}">{{ menu_sub.name }}</a>
-                                                        </h2>
-                                                        <ul class="sub-menu-lists">
-                                                            {% for menu_sub_sub in menu_sub.items %}
-                                                                <li><a href="{{ menu_sub_sub.url }}">{{ menu_sub_sub.name }}</a></li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    {% else %}
-                                                        <h2 class="sub-menu-head"><a style="font-size: 1.16rem; color: inherit" href="{{ menu_sub.url }}">{{ menu_sub.name }}</a></h2>
-                                                    {% endif %}
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            </li>
-                        {% endif %}
-                    {% endfor %}
+				<ul class="main-nav">
 
+					{% for menu in main_navigation_menu.items %}
+						{% if menu.url %}
+							<li class="top-level-link {% if menu.slug == 'all_categories' %} all-categories {% endif %}">
+								<a href="{{ menu.url }}" {% if menu.items | length > 0 %} class="mega-menu" {% endif %}>
+									<span>{{ menu.name }}</span>
+								</a>
+								{% if menu.items | length > 0 %}
+									<div class="sub-menu-block">
+										<div class="row">
+											{% for menu_sub in menu.items %}
+												<div class="sub-menu-col">
+													{% if menu_sub.items | length > 0 %}
+														<h2 class="sub-menu-head">
+															<a href="{{ menu_sub.url }}">{{ menu_sub.name }}</a>
+														</h2>
+														<ul class="sub-menu-lists">
+															{% for menu_sub_sub in menu_sub.items %}
+																<li>
+																	<a href="{{ menu_sub_sub.url }}">{{ menu_sub_sub.name }}</a>
+																</li>
+															{% endfor %}
+														</ul>
+													{% else %}
+														<h2 class="sub-menu-head">
+															<a href="{{ menu_sub.url }}">{{ menu_sub.name }}</a>
+														</h2>
+													{% endif %}
+												</div>
+											{% endfor %}
+										</div>
+									</div>
+								{% endif %}
+							</li>
+						{% endif %}
+					{% endfor %}
 
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-
+				</ul>
+			</nav>
+		</div>
+	</div>
 </div>
+
+<style>
+	.dark-menu {
+		position: relative;
+		bottom: -89px;
+	}
+
+	.top-main-menu-wrapper {
+		padding: 16px;
+		margin: 0;
+		position: absolute;
+		top: -60px;
+		right: 50%;
+		z-index: 99;
+		transform: translateX(50%);
+	}
+
+	.main-nav-wrapper {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.main-nav {
+		list-style: none;
+		display: flex;
+		gap: 32px;
+		padding: 0;
+		margin: 0;
+	}
+
+	.top-level-link {
+		position: relative;
+	}
+
+	.top-level-link a {
+		text-decoration: none;
+		color: black;
+		padding: 5px;
+	}
+
+	.sub-menu-block {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background: white;
+		display: none;
+		padding: 16px;
+		border: 1px solid #ddd;
+		z-index: 100;
+	}
+
+	.top-level-link:hover .sub-menu-block {
+		display: block;
+	}
+
+	.row {
+		display: flex;
+		gap: 16px;
+	}
+
+	.sub-menu-col {
+		flex: 1;
+		max-width: 200px;
+	}
+
+	.sub-menu-head {
+		font-size: 1.16rem;
+		margin-bottom: 8px;
+	}
+
+	.sub-menu-lists {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.sub-menu-lists li {
+		margin-bottom: 3px;
+	}
+
+	.sub-menu-lists a {
+		text-decoration: none;
+		color: black;
+		padding: 5px;
+		display: block;
+	}
+</style>

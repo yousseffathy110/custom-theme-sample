@@ -1,0 +1,100 @@
+<section class="">
+	<section class="container cards__wrapper">
+		{% for card in settings.card %}
+			<div class="card__wrapper">
+				<div class="text__wrapper">
+					<h3 class="heading">{{card.heading}}</h3>
+					<p class="sub__text">{{card.text}}</p>
+				</div>
+				<img src="{{ card.icon }}" alt="icon" class="icon">
+			</div>
+		{% endfor %}
+	</section>
+</section>
+
+<style>
+	.cards__wrapper {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+		gap: 10px;
+		margin: 25px auto;
+	}
+	.card__wrapper {
+		padding: 25px 35px;
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 15px;
+	}
+	.card__wrapper .text__wrapper {
+		order: 2;
+	}
+	.card__wrapper img {
+		order: 1;
+	}
+	.card__wrapper .text__wrapper h3 {
+		font-size: 20px;
+		fonr-weight: 500;
+		line-height: 24px;
+	}
+	.card__wrapper .text__wrapper p {
+		font-size: 16px;
+		fonr-weight: 500;
+		line-height: 19.2px;
+	}
+</style>
+
+
+{% schema %}
+{
+  "name": {
+    "ar": "معلومات اضافيه",
+    "en": "info page"
+  },
+  "icon": "fal fa-presentation",
+  "display": true,
+  "settings": {
+    "card": {
+      "type": "list",
+      "label": {
+        "ar": "العنوان",
+        "en": "text"
+      },
+      "info": {
+        "ar": "نص توضيحي",
+        "en": "info text"
+      },
+      "settings_label": {
+        "ar": "عنوان العنصر",
+        "en": "item title"
+      },
+      "noLabel": false,
+      "settings": {
+        "heading": {
+          "type": "text",
+          "settings_label": {
+            "ar": "العنوان",
+            "en": "heading"
+          }
+        },
+        "text": {
+          "type": "text",
+          "label": {
+            "ar": "نص فرعي",
+            "en": "sub text"
+          }
+        },
+        "icon": {
+          "type": "image",
+          "label": {
+            "ar": "الايكون",
+            "en": "icon"
+          }
+        }
+      }
+    }
+  }
+}
+{% endschema %}
