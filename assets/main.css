@@ -1907,6 +1907,7 @@ hr {
 
 .header-theme-bg-primary {
   background-color: transparent;
+  backdrop-filter: blur(10px) !important;
 }
 
 .header-theme-text-primary {
