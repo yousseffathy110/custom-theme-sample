@@ -1,0 +1,77 @@
+<section class="">
+	<section class="container category__wrapper">
+		<div class="category__text">
+			<div class="">
+				<h3></h3>
+				<a href="/categories"></a>
+			</div>
+			<p></p>
+		</div>
+		<div class="imgs__wrapper"></div>
+	</section>
+</section>
+
+{% schema %}
+{
+  "name": {
+    "ar": "الفئات",
+    "en": "categories"
+  },
+  "icon": "fal fa-cabinet-filing",
+  "display": true,
+  "settings": {
+    "categories": {
+      "type": "list",
+      "noLabel": true,
+      "settings_label": {
+        "ar": "التصنيف",
+        "en": "Picture"
+      },
+      "settings": {
+        "category__title": {
+          "type": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "text"
+          }
+        },
+        "category__img": {
+          "type": "image",
+          "label": {
+            "ar": "صوره",
+            "en": "img"
+          }
+        },
+        "category": {
+          "type": "category",
+          "label": {
+            "ar": "اختر التصنيف",
+            "en": "Select category"
+          }
+        }
+      }
+    },
+    "display_more": {
+      "type": "text",
+      "label": {
+        "ar": "اظهار المزيد",
+        "en": "show more"
+      }
+    },
+    "heading_text": {
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "tittle text"
+      }
+    },
+    "sub_text": {
+      "type": "text",
+      "label": {
+        "ar": "العنوان فرعي",
+        "en": "sub text"
+      }
+    }
+  }
+}
+{% endschema %}
