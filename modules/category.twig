@@ -1,15 +1,63 @@
-<section class="">
+<section class="parent">
 	<section class="container category__wrapper">
 		<div class="category__text">
-			<div class="">
-				<h3></h3>
-				<a href="/categories"></a>
+			<div class="text__wrapper">
+				<h3>{{settings.heading_text}}</h3>
+				<p>{{settings.sub_text}}</p>
 			</div>
-			<p></p>
+			<a href="/">{{settings.display_more}}</a>
 		</div>
-		<div class="imgs__wrapper"></div>
+		<div class="imgs__wrapper">
+			{% for category in settings.categories %}
+				<img src="{{category.category__img}}" alt="">
+			{% endfor %}
+		</div>
 	</section>
 </section>
+
+<style>
+	.parent {
+		margin: 70px 0;
+	}
+	.parent .category__text {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 25px;
+	}
+	.parent .category__text h3 {
+		color: #750E21;
+		font-size: 24px;
+		line-height: 28.8px;
+		font-weight: 700;
+	}
+	.parent .category__text p {
+		color: #7F585F;
+		font-size: 16px;
+		line-height: 19.2px;
+		font-weight: 500;
+	}
+	@media(max-width:767px) {
+		.parent .category__text p {
+			font-size: 14px;
+		}
+	}
+	.parent .category__text a {
+		color: #E3651D;
+		font-size: 14px;
+		line-height: 16.8px;
+		font-weight: 500;
+	}
+	.category__wrapper .imgs__wrapper {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+		gap: 25px;
+		align-items: center;
+		justify-content: center;
+	}
+	.category__wrapper .imgs__wrapper img {
+		width: 206px;
+	}
+</style>
 
 {% schema %}
 {
