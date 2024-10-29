@@ -54,14 +54,18 @@
 		width: 100%;
 		max-width: 200px;
 		margin-inline: auto;
-		/*/
-		border: 1px solid #cebfbf;
-		*/ border-radius: 15px;
+		border-radius: 15px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
 		text-align: center;
+	}
+	.product__card .product-item img {
+		transition: transform 0.5s;
+	}
+	.product__card .product-item:hover img {
+		transform: rotate(-35deg);
 	}
 	@media(max-width: 768px) {
 		.product-item {
