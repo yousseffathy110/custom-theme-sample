@@ -1,0 +1,44 @@
+<section class="special container">
+	<img src="{{ settings.banner }}" alt="banner" class="banner-img">
+</section>
+
+<style>
+	.banner-img {
+		border-radius: 15px;
+		width: 100%;
+		height: 552.49px;
+	}
+	.special {
+		padding-inline: 0;
+	}
+	@media(max-width: 767px) {
+		.banner-img {
+			height: 296.84px;
+		}
+	}
+</style>
+
+
+{% schema %}
+{
+  "name": {
+    "ar": "banner",
+    "en": "banner"
+  },
+  "icon": "fal fa-cabinet-filing",
+  "display": true,
+  "settings": {
+    "banner": {
+        "type": "image",
+        "label": {
+        "ar": "البانر",
+        "en": "banner"
+        },
+        "info": {
+        "ar": "نص توضيحي",
+        "en": "info text"
+        }
+    }
+  }
+}
+{% endschema %}
