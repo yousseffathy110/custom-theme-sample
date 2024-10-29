@@ -60,6 +60,7 @@
 		align-items: center;
 		justify-content: space-between;
 		text-align: center;
+        transition: background 0.5s;
 	}
 	.product__card .product-item img {
 		transition: transform 0.5s;
@@ -74,11 +75,11 @@
 	}
 	.product-card-add-to-cart {
 		background: black;
-		border: none;
-		color: white;
-		padding: 13px 50px;
-		border-radius: 8px;
-		margin-bottom: 8px;
+        border: none;
+        color: white;
+        padding: 13px 70px;
+        border-radius: 8px;
+        margin-bottom: 0px;
 	}
 	.product-item .product-price {
 		color: #750E21 !important;
@@ -91,6 +92,42 @@
 	}
 </style>
 
+<script>
+	const colors = [
+		"#E3651D",
+		"#D54963",
+		"#307FAA",
+		"#D87A91",
+		"#363435"
+	];
+
+	const cards = document.querySelectorAll('.product__card .product-item');
+
+	cards.forEach(card => {
+		const cardTitle = card.querySelector('.product-title span');
+		const cardPrice = card.querySelector('.product-price span');
+
+		card.addEventListener("mouseenter", () => {
+			const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+			if (randomColor === "#363435") {
+				card.style.backgroundColor = randomColor;
+				cardTitle.style.color = "white";
+				cardPrice.style.color = "white";
+			} else {
+				card.style.backgroundColor = randomColor;
+				cardTitle.style.color = "black";
+				cardPrice.style.color = "black";
+			}
+		});
+
+		card.addEventListener("mouseleave", () => {
+			card.style.backgroundColor = ""; 
+			cardTitle.style.color = ""; 
+			cardPrice.style.color = ""; 
+		});
+	});
+</script>
 
 {% schema %}
 {
