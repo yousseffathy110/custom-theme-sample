@@ -1,23 +1,159 @@
 <section class="special container">
-	<img src="{{ settings.banner }}" alt="banner" class="banner-img">
+	<div class="text">NIKE</div>
+	<div class="footer"></div>
+	<img src="{{ settings.img1 }}" alt="" class="right">
+	<img src="{{ settings.img2 }}" alt="" class="left">
 </section>
 
 <style>
-	.banner-img {
-		border-radius: 15px;
-		width: 100%;
-		height: 552.49px;
-	}
 	.special {
-		padding-inline: 0;
+		background: linear-gradient(90deg, #BED754 0%, #FF965A 100%);
+		height: 552.49px;
+		margin-bottom: 55px;
+		border-radius: 20px;
+		position: relative;
+		overflow: hidden;
+	}
+	.text {
+		position: absolute;
+		right: 50%;
+		bottom: 55%;
+		opacity: 0.4;
+		color: white;
+		font-weight: 900;
+		font-size: 35em;
+		text-transform: capitalize;
+		letter-spacing: 15px;
+		transform: translate(50%, 50%) translateX(100%);
+		transition: transform 1.5s ease;
+	}
+	.text.visible {
+		transform: translate(50%, 50%) translateX(0);
+	}
+	.footer {
+		background: #750E21;
+		position: absolute;
+		bottom: 0;
+		left: 117%;
+		right: 0;
+		height: 50px;
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		width: 100%;
+		transform: translateX(-100%);
+		transition: transform 1.5s ease;
+	}
+	.footer.visible {
+		transform: translateX(0);
+	}
+	.right,
+	.left {
+		position: absolute;
+		top: 18px;
+		transition: transform 1.5s ease;
+	}
+	.right {
+		right: 52px;
+		transform: translateX(100%); /* Start off-screen to the right */
+	}
+	.right.visible {
+		transform: translateX(0); /* Slide into position */
+	}
+	.left {
+		left: 9%;
+		transform: translateX(-100%); /* Start off-screen to the left */
+	}
+	.left.visible {
+		transform: translateX(0); /* Slide into position */
+	}
+	@media(max-width: 1208px) {
+		.right {
+			right: -8%;
+			top: -17px;
+		}
+		.left {
+			left: 4%;
+			top: 18px;
+		}
+	}
+	@media(max-width: 1000px) {
+		.right {
+			right: 14%;
+			top: 22%;
+			width: 328.81px;
+			height: 219.21px;
+		}
+		.left {
+			left: 14%;
+			top: 23%;
+			width: 296.81px;
+			height: 178.21px;
+		}
 	}
 	@media(max-width: 767px) {
-		.banner-img {
+		.special {
 			height: 296.84px;
+			border-radius: 0;
+		}
+		.text {
+			font-size: 12em;
+			padding-left: 12px;
+		}
+		.footer {
+			border-radius: 0;
+		}
+		.right {
+			right: 5%;
+			top: 11%;
+			width: 328.81px;
+			height: 219.21px;
+		}
+		.left {
+			left: 6%;
+			top: 14%;
+			width: 296.81px;
+			height: 178.21px;
+		}
+	}
+	@media(max-width: 350px) {
+		.right {
+			right: -1%;
+			top: 19%;
+			width: 235.81px;
+			height: 159.21px;
+		}
+		.left {
+			left: 5%;
+			top: 21%;
+			width: 200.81px;
+			height: 129.21px;
 		}
 	}
 </style>
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const footer = document.querySelector('.footer');
+        const text = document.querySelector('.text');
+        const rightImage = document.querySelector('.right');
+        const leftImage = document.querySelector('.left');
+        const specialSection = document.querySelector('.special');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('visible');
+                    text.classList.add('visible');
+                    rightImage.classList.add('visible');
+                    leftImage.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        observer.observe(specialSection);
+    });
+</script>
 
 {% schema %}
 {
@@ -28,15 +164,26 @@
   "icon": "fal fa-cabinet-filing",
   "display": true,
   "settings": {
-    "banner": {
+    "img1": {
         "type": "image",
         "label": {
-        "ar": "البانر",
-        "en": "banner"
+            "ar": "shoes",
+            "en": "banner"
         },
         "info": {
-        "ar": "نص توضيحي",
-        "en": "info text"
+            "ar": "نص توضيحي",
+            "en": "info text"
+        }
+    },
+    "img2": {
+        "type": "image",
+        "label": {
+            "ar": "shoes",
+            "en": "banner"
+        },
+        "info": {
+            "ar": "نص توضيحي",
+            "en": "info text"
         }
     }
   }
