@@ -60,7 +60,7 @@
         background-color: #e6cacf;
         height: 489px;
         position: relative;
-        padding: 68px 55px;    
+        padding: 68px 0;    
     }
 	.product__card .product-item {
 		background: white;
@@ -79,6 +79,14 @@
         top: -65px;
         left: 0;
         z-index: 1;
+    }
+    @media (max-width: 580px) {
+        .product-card-add-to-cart {
+            padding: 13px 50px;
+        }
+        .product__card .product-item {
+            width: 160px !important;
+        }
     }
 </style>
 
@@ -124,15 +132,19 @@
 			spaceBetween: 20,
 			loop: true,
 			breakpoints: {
-				480: {
-                    slidesPerView: 1,
+				350: { //mobile view
+                    slidesPerView: 2,
                     spaceBetween: 10
                 },
-                767: { // Tablet view
-                    slidesPerView: 2,
-                    spaceBetween: 15
+                720: { 
+                    slidesPerView: 3,
+                    spaceBetween: 10 
                 },
-                1024: { // Desktop view
+                1024: { //desktop view
+                    slidesPerView: 4,
+                    spaceBetween: 10 
+                },
+                1124: { //desktop view
                     slidesPerView: 5,
                     spaceBetween: 10 
                 }
