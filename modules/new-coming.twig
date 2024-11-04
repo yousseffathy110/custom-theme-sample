@@ -8,7 +8,7 @@
 
 <section class="new__comming">
     <img src="{{ settings.backgroud_img }}" alt="nike" class="nike">
-	<div class="wrapper">
+	<div class="wrapper container">
 		<!-- Slider main container -->
 		<div class="comming-swiper">
 			<!-- Additional required wrapper -->
@@ -16,7 +16,7 @@
 				<!-- Slides -->
 				{% for product in settings.products.products %}
 					<div class="swiper-slide">
-						<div class="product__card">
+                        <div class="product__card">
 							{% include 'product-card.twig' with {'product' : product, 'index': key} %}
 						</div>
 					</div>
@@ -55,12 +55,22 @@
 		line-height: 16.8px;
 		font-weight: 500;
 	}
-	.new__comming .wrapper {
+	.new__comming {
 		width: 100%;
-        background-color: #e6cacf;
         height: 489px;
         position: relative;
-        padding: 68px 0;    
+        background-color: #e6cacf;
+	}
+    .new__comming .nike{
+        position: absolute;
+        top: -65px;
+        left: 0;
+        z-index: 1;
+    }
+	.new__comming .wrapper {
+		width: 100%;
+        position: relative;
+        padding: 67px 0;    
     }
 	.product__card .product-item {
 		background: white;
@@ -70,22 +80,19 @@
 	.wrapper {
 		overflow-x: hidden;
 	}
-	.new__comming {
-		width: 100%;
-        position: relative;
-	}
-    .new__comming .nike{
-        position: absolute;
-        top: -65px;
-        left: 0;
-        z-index: 1;
-    }
     @media (max-width: 580px) {
         .product-card-add-to-cart {
             padding: 13px 50px;
         }
         .product__card .product-item {
             width: 160px !important;
+        }
+        .new__comming .nike {
+            position: absolute;
+            top: -65px;
+            left: 0;
+            z-index: 1;
+            width: 325px;
         }
     }
 </style>
@@ -140,11 +147,11 @@
                     slidesPerView: 3,
                     spaceBetween: 10 
                 },
-                1024: { //desktop view
+                1000: { //desktop view
                     slidesPerView: 4,
                     spaceBetween: 10 
                 },
-                1124: { //desktop view
+                1200: { //desktop view
                     slidesPerView: 5,
                     spaceBetween: 10 
                 }
