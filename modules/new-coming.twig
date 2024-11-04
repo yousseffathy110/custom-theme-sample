@@ -1,0 +1,190 @@
+<div class="container category__text">
+	<div class="text__wrapper">
+		<h3>{{settings.heading_text}}</h3>
+		<p>{{settings.sub_text}}</p>
+	</div>
+	<a href="/">{{settings.display_more}}</a>
+</div>
+
+<section class="new__comming">
+    <img src="{{ settings.backgroud_img }}" alt="nike" class="nike">
+	<div class="wrapper">
+		<!-- Slider main container -->
+		<div class="comming-swiper">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				{% for product in settings.products.products %}
+					<div class="swiper-slide">
+						<div class="product__card">
+							{% include 'product-card.twig' with {'product' : product, 'index': key} %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.category__text {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 25px;
+	}
+	.category__text h3 {
+		color: #750E21;
+		font-size: 24px;
+		line-height: 28.8px;
+		font-weight: 700;
+	}
+	.category__text p {
+		color: #7F585F;
+		font-size: 16px;
+		line-height: 19.2px;
+		font-weight: 500;
+	}
+	@media (max-width: 767px) {
+		.category__text p {
+			font-size: 14px;
+		}
+	}
+	.category__text a {
+		color: #E3651D;
+		font-size: 14px;
+		line-height: 16.8px;
+		font-weight: 500;
+	}
+	.new__comming .wrapper {
+		width: 100%;
+        background-color: #e6cacf;
+        height: 489px;
+        position: relative;
+        padding: 68px 55px;    
+    }
+	.product__card .product-item {
+		background: white;
+		border-radius: 18px;
+		width: 282px;
+	}
+	.wrapper {
+		overflow-x: hidden;
+	}
+	.new__comming {
+		width: 100%;
+        position: relative;
+	}
+    .new__comming .nike{
+        position: absolute;
+        top: -65px;
+        left: 0;
+        z-index: 1;
+    }
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const colors = [
+			"#E3651D",
+			"#D54963",
+			"#307FAA",
+			"#D87A91",
+			"#363435"
+		];
+
+		const cards = document.querySelectorAll('.wrapper .product__card .product-item');
+
+		cards.forEach(card => {
+			const cardTitle = card.querySelector('.product-title span');
+			const cardPrice = card.querySelector('.product-price span');
+
+			card.addEventListener("mouseenter", () => {
+				const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+				if (randomColor === "#363435") {
+					card.style.backgroundColor = randomColor;
+					cardTitle.style.color = "white";
+					cardPrice.style.color = "white";
+				} else {
+					card.style.backgroundColor = randomColor;
+					cardTitle.style.color = "black";
+					cardPrice.style.color = "black";
+				}
+			});
+
+			card.addEventListener("mouseleave", () => {
+				card.style.backgroundColor = "";
+				cardTitle.style.color = "";
+				cardPrice.style.color = "";
+			});
+		});
+
+		const swiper = new Swiper('.comming-swiper', {
+			slidesPerView: '1',
+			spaceBetween: 20,
+			loop: true,
+			breakpoints: {
+				480: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                767: { // Tablet view
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                1024: { // Desktop view
+                    slidesPerView: 5,
+                    spaceBetween: 10 
+                }
+			}
+		});
+	});
+</script>
+
+{% schema %}
+{
+  "name": {
+    "ar": "وصل حديثا",
+    "en": " new coming"
+  },
+  "icon": "fal fa-presentation",
+  "display": true,
+  "settings": {
+    "display_more": {
+        "type": "text",
+        "label": {
+            "ar": "اظهار المزيد",
+            "en": "show more"
+        }
+    },
+    "heading_text": {
+        "type": "text",
+        "label": {
+            "ar": "العنوان",
+            "en": "tittle text"
+        }
+    },
+    "sub_text": {
+        "type": "text",
+        "label": {
+            "ar": "العنوان فرعي",
+            "en": "sub text"
+        }
+    },
+    "products": {
+        "type": "products",
+        "label": {
+            "ar": "اختر قائمة المنتجات ",
+            "en": "Select category products"
+            }
+    },
+    "backgroud_img":{
+        "type": "image",
+        "label": {
+            "ar": "صوره الخلفيه",
+            "en": "background img"
+            }
+    }
+  }
+}
+{% endschema %}

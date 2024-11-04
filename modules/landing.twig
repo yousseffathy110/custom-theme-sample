@@ -24,7 +24,24 @@
 		text-align: center;
 		position: relative;
 	}
-
+	/* Hide all pagination bullets */
+	.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+	.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+		display: none !important;
+	}
+	/* Show only the first two bullets */
+	.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet:nth-child(1),
+	.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet:nth-child(2) {
+		display: inline-block !important;
+	}
+	.swiper-pagination-bullet-active{
+		background: #eee !important;
+	}
+	.swiper-pagination-bullet{
+		width: 10px !important;
+  		height: 10px !important;
+		  opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.5) !important;
+	}
 	.landing-swiper {
 		overflow-x: hidden;
 		width: 100%;
@@ -109,22 +126,24 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		const landingSwiper = new Swiper('.landing-swiper', {
-			slidesPerView: 1,
-			spaceBetween: 0,
-			loop: true,
-			loopedSlides: 2, // Set this to the actual number of slides you have
-			autoplay: {
-				delay: 5000,
-				disableOnInteraction: false
-			},
-			pagination: {
-				el: '.landing-swiper .swiper-pagination',
-				clickable: true
-			},
-			allowTouchMove: true
-		});
+	const landingSwiper = new Swiper('.landing-swiper', {
+		slidesPerView: 1,
+		spaceBetween: 0,
+		loop: true,
+		loopedSlides: 2,
+		autoplay: {
+			delay: 5000,
+			disableOnInteraction: false
+		},
+		pagination: {
+			el: '.landing-swiper .swiper-pagination',
+			clickable: true,
+			type: 'bullets'
+		},
+		allowTouchMove: true
 	});
+});
+
 </script>
 
 
