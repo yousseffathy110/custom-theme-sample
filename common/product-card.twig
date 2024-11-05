@@ -27,40 +27,39 @@
 				</div>
 			{% endif %}
 			<div class="product-crd-spec">
-				{% if product.formatted_sale_price is not null %}
-					<div class="section-product-price">
-						<div class="product-price theme-title-primary">
+				<div class="section-product-price">
+					<div class="product-price theme-title-primary">
+						{% if product.formatted_sale_price is not null %}
 							<span>{{ product.formatted_sale_price }}</span>
-						</div>
-						<div style="color: #494949">
-							<span class="product-prev-price">{{ product.formatted_price }}</span>
-							<span style="color:#f25f5f;">
-								&nbsp;  &nbsp;{{ locals.product_discount }}&nbsp;{{ product.discount_percentage }}%
+						{% else %}
+							<span>{{ product.formatted_price }}</span>
+						{% endif %}
+					</div>
+					<div class="price-details">
+						<span class="product-prev-price {% if product.formatted_sale_price is not null %}text-decoration-line-through{% endif %}" style="color: black !important;">
+							{{ product.formatted_price }}
+						</span>
+						{% if product.formatted_sale_price is not null %}
+							<span class="discount" style="color:#f25f5f;">
+								{{ locals.product_discount }}
+								{{ product.discount_percentage }}%
 							</span>
-						</div>
+						{% endif %}
 					</div>
-				{% else %}
-					<div class="product-price section-product-price theme-title-primary">
-						<span>{{ product.formatted_price }}</span>
-					</div>
-				{% endif %}
+				</div>
 
 				{% if product.is_infinite or product.quantity > 0 %}
-
-					{% if (product.has_options or product.has_fields) %}
+					{% if product.has_options or product.has_fields %}
 						<small style="font-size: 1.1rem; white-space: break-spaces">{{ locals.product_has_options }}</small>
 					{% endif %}
-
 					{% if not product.is_taxable %}
 						<small style="font-size: 1.1rem; white-space: break-spaces">{{ locals.product_is_not_taxable }}</small>
 					{% endif %}
-
 				{% endif %}
 
 				{% if product.is_infinite == false and product.quantity <= 0 %}
 					<small style="font-size: 1.1rem; white-space: break-spaces">{{ locals.lbl_error_product_out_of_stock }}</small>
 				{% endif %}
-
 			</div>
 			<div style="text-align: center">
 				{% if product.is_infinite == false and product.quantity <= 0 %}
