@@ -1748,16 +1748,16 @@ hr {
 
 .btn-primary {
   color: var(--text-color-primary-bg);
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
+  /* border-color: var(--primary-color); */
 }
 
 .btn-primary:hover,
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  /* background-color: var(--primary-color);
+  border-color: var(--primary-color); */
   filter: brightness(80%);
 }
 
@@ -1782,13 +1782,13 @@ hr {
 
 .btn-outline-primary {
   color: var(--primary-color);
-  border-color: var(--primary-color);
+  /* border-color: var(--primary-color); */
 }
 
 .btn-outline-primary:hover {
   color: #fff;
   background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  /* border-color: var(--primary-color); */
 }
 
 .div-dropdown label {

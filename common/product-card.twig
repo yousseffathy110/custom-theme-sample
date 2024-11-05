@@ -35,7 +35,7 @@
 							<span>{{ product.formatted_price }}</span>
 						{% endif %}
 					</div>
-					<div class="price-details">
+					<div class="price-details" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
 						<span class="product-prev-price {% if product.formatted_sale_price is not null %}text-decoration-line-through{% endif %}" style="color: black !important;">
 							{{ product.formatted_price }}
 						</span>
@@ -50,7 +50,7 @@
 
 				{% if product.is_infinite or product.quantity > 0 %}
 					{% if product.has_options or product.has_fields %}
-						<small style="font-size: 1.1rem; white-space: break-spaces">{{ locals.product_has_options }}</small>
+						{# <small style="font-size: 1.1rem; white-space: break-spaces">{{ locals.product_has_options }}</small> #}
 					{% endif %}
 					{% if not product.is_taxable %}
 						<small style="font-size: 1.1rem; white-space: break-spaces">{{ locals.product_is_not_taxable }}</small>
@@ -68,7 +68,7 @@
 						<span>{{ locals.btn_error_product_out_of_stock }}</span>
 					</a>
 				{% elseif ( product.has_options or product.has_fields ) %}
-					<a class="btn btn-primary btn-product-card-select-variant" href="/products/{{ product.slug }}">{{ locals.add_to_cart }}</a>
+					<a class="btn btn-primary btn-product-card-select-variant" style="background:black;border: none;color: white;padding: 13px 70px;border-radius: 8px;margin-bottom: 0px;" href="/products/{{ product.slug }}">{{ locals.add_to_cart }}</a>
 				{% else %}
 					<a href="javascript:void(0)" class="btn product-card-add-to-cart" onclick="productCartAddToCart(this,'{{ product.id }}')">
 						<img style="display: inline" class="add-to-cart-progress d-none" src="{{ asset_url }}spinner.gif" width="20" height="20"/>
