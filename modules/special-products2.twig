@@ -1,0 +1,182 @@
+<section class="container">
+	<div class="category__text">
+		<div class="text__wrapper">
+			<h3>{{settings.heading_text}}</h3>
+			<p>{{settings.sub_text}}</p>
+		</div>
+		<a href="/">{{settings.display_more}}</a>
+	</div>
+	<div class="product__wrapper">
+		{% for product in settings.products.products %}
+			<div class="product__card">
+				{% include 'product-card.twig' with {'product' : product, 'index': key} %}
+			</div>
+		{% endfor %}
+	</div>
+</section>
+
+<style>
+	.category__text {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 25px;
+	}
+	.category__text h3 {
+		color: #750E21;
+		font-size: 24px;
+		line-height: 28.8px;
+		font-weight: 700;
+	}
+	.category__text p {
+		color: #7F585F;
+		font-size: 16px;
+		line-height: 19.2px;
+		font-weight: 500;
+	}
+	@media(max-width:767px) {
+		.category__text p {
+			font-size: 14px;
+		}
+	}
+	.category__text a {
+		color: #E3651D;
+		font-size: 14px;
+		line-height: 16.8px;
+		font-weight: 500;
+	}
+	.product__wrapper {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+		margin-bottom: 60px;
+		row-gap: 30px;
+	}
+	.product__card .product-item {
+		width: 100%;
+		max-width: 200px;
+		margin-inline: auto;
+		border-radius: 15px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		text-align: center;
+        transition: background 0.5s;
+	}
+	.product__card .product-item img {
+		transition: transform 0.5s;
+	}
+	.product__card .product-item:hover img {
+		transform: rotate(-35deg);
+	}
+	@media(max-width: 768px) {
+		.product-item {
+			width: 200px;
+		}
+	}
+	.product-card-add-to-cart {
+		background: black;
+        border: none;
+        color: white;
+        padding: 13px 70px;
+        border-radius: 8px;
+        margin-bottom: 0px;
+	}
+	.product-item .product-price {
+		color: #750E21 !important;
+	}
+	.product-crd-spec {
+		min-height: 40px !important;
+	}
+	.product-item .product-title {
+		margin-bottom: -15px !important;
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+	const colors = [
+		"#E3651D",
+		"#D54963",
+		"#307FAA",
+		"#D87A91",
+		"#363435"
+	];
+
+	// Select all product cards
+	const cards = document.querySelectorAll('.product__card .product-item');
+
+	// Check if there are any matching elements
+	if (cards.length > 0) {
+		cards.forEach(card => {
+			const cardTitle = card.querySelector('.product-title span');
+			const cardPrice = card.querySelector('.product-price span');
+
+			// Make sure cardTitle and cardPrice are found
+			if (cardTitle && cardPrice) {
+				card.addEventListener("mouseenter", () => {
+					const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+					card.style.backgroundColor = randomColor;
+
+					// Adjust text color based on background color
+					if (randomColor === "#363435") {
+						cardTitle.style.color = "white";
+						cardPrice.style.color = "white";
+					} else {
+						cardTitle.style.color = "black";
+						cardPrice.style.color = "black";
+					}
+				});
+
+				card.addEventListener("mouseleave", () => {
+					card.style.backgroundColor = ""; 
+					cardTitle.style.color = ""; 
+					cardPrice.style.color = ""; 
+				});
+			}
+		});
+	}
+});
+
+</script>
+
+{% schema %}
+{
+  "name": {
+    "ar": " 2 منتجات مميزه",
+    "en": "special products 2"
+  },
+  "icon": "fal fa-presentation",
+  "display": true,
+  "settings": {
+    "display_more": {
+        "type": "text",
+        "label": {
+            "ar": "اظهار المزيد",
+            "en": "show more"
+        }
+        },
+    "heading_text": {
+        "type": "text",
+        "label": {
+            "ar": "العنوان",
+            "en": "tittle text"
+        }
+        },
+    "sub_text": {
+        "type": "text",
+        "label": {
+            "ar": "العنوان فرعي",
+            "en": "sub text"
+        }
+        },
+    "products": {
+        "type": "products",
+        "label": {
+            "ar": "اختر قائمة المنتجات ",
+            "en": "Select category products"
+            }
+        }
+  }
+}
+{% endschema %}
