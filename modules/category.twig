@@ -15,7 +15,10 @@
 					<div
 						class="swiper-slide">
 						<!-- Each slide must have this class -->
-						<img src="{{ category.category__img }}" alt="">
+						<div class="category">
+							<img src="{{ category.category__img }}" width="206px" height= "206px">
+							<h3>{{ category.category__title }}</h3>
+						</div>
 					</div>
 				{% endfor %}
 			</div>
@@ -58,7 +61,7 @@
 	}
 	.category__wrapper .imgs__wrapper {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+		grid-template-columns: repeat(5, minmax(206px, 1fr));
 		gap: 25px;
 		align-items: center;
 		justify-content: center;
@@ -72,6 +75,19 @@
 	.category__wrapper .imgs__wrapper img:hover {
 		transform: scale(1.1);
 	}
+	.category__wrapper .category {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+	}
+	.category__wrapper .category h3{
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 24px;
+	}
 </style>
 
 <script>
@@ -83,15 +99,19 @@
 		breakpoints: {
 			480: {
 				slidesPerView: 2,
-				spaceBetween: 30
+				spaceBetween: 40
 			},
 			767: {
 				slidesPerView: 3,
-				spaceBetween: 40
+				spaceBetween: 20
 			},
 			1024: {
+				slidesPerView: 4,
+				spaceBetween: 20
+			},
+			1200: {
 				slidesPerView: 5,
-				spaceBetween: 40
+				spaceBetween: 20
 			}
 		},
 		pagination: {

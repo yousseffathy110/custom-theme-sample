@@ -1,12 +1,11 @@
 <section class="landing">
 	<div class="landing-swiper">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<img class="landing-img" src="{{ settings.background_img }}" alt="first img">
-			</div>
-			<div class="swiper-slide">
-				<img class="landing-img" src="{{ settings.background_img2 }}" alt="second img">
-			</div>
+			{% for slide in settings.slider_images %}
+				<div class="swiper-slide">
+					<img class="landing-img" src="{{ slide.img }}" alt="landing slider img {{ loop.index }}">
+				</div>
+			{% endfor %}
 		</div>
 		<div class="swiper-pagination"></div>
 	</div>
@@ -22,6 +21,23 @@
 		width: 100%;
 		color: white;
 		text-align: center;
+		position: relative;
+	}
+	.landing .landing-swiper .swiper-slide::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(108.62deg, rgba(0, 0, 0, 0.7) 0%, rgba(227, 101, 29, 0.7) 150.6%, rgba(191, 214, 84, 0.7) 150.62%);
+		z-index: 1;
+	}
+	.landing .landing-swiper .landing-img {
+		width: 100%;
+		height: 100vh;
+		object-fit: cover;
+		z-index: 0; /* Ensures image is behind the overlay */
 		position: relative;
 	}
 	/* Hide all pagination bullets */
@@ -40,12 +56,12 @@
 	.swiper-pagination-bullet{
 		width: 10px !important;
   		height: 10px !important;
-		  opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.5) !important;
+		opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.5) !important;
 	}
 	.landing-swiper {
 		overflow-x: hidden;
 		width: 100%;
-		height: 100vh; /* Full viewport height for better mobile display */
+		height: 100vh;
 	}
 
 	.swiper {
@@ -61,8 +77,8 @@
 
 	.swiper-slide .landing-img {
 		width: 100%;
-		object-fit: cover;
 		height: 100vh;
+		object-fit: cover;
 	}
 
 	.landing .wrapper {
@@ -126,23 +142,23 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-	const landingSwiper = new Swiper('.landing-swiper', {
-		slidesPerView: 1,
-		spaceBetween: 0,
-		loop: true,
-		loopedSlides: 2,
-		autoplay: {
-			delay: 5000,
-			disableOnInteraction: false
-		},
-		pagination: {
-			el: '.landing-swiper .swiper-pagination',
-			clickable: true,
-			type: 'bullets'
-		},
-		allowTouchMove: true
+		const landingSwiper = new Swiper('.landing-swiper', {
+			slidesPerView: 1,
+			spaceBetween: 0,
+			loop: true,
+			loopedSlides: 2,
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false
+			},
+			pagination: {
+				el: '.landing-swiper .swiper-pagination',
+				clickable: true,
+				type: 'bullets'
+			},
+			allowTouchMove: true
+		});
 	});
-});
 
 </script>
 
@@ -177,20 +193,35 @@
         "en": "button text"
       }
     },
-    "background_img": {
-      "type": "image",
-      "label": {
-        "ar": "صوره الخلفيه",
-        "en": "background img"
-      }
-    },
-    "background_img2": {
-      "type": "image",
-      "label": {
-        "ar": "2 صوره الخلفيه",
-        "en": "background img"
-      }
-    }
+    "slider_images": {
+		"type": "list",
+		"label": {
+		"ar": "صور السلايدر",
+		"en": "slider_images"
+		},
+		"info": {
+		"ar": "نص توضيحي",
+		"en": "info text"
+		},
+		"settings_label": {
+		"ar": "عنوان العنصر",
+		"en": "item title"
+		},
+		"noLabel": false,
+		"settings": {
+			"img": {
+				"type": "image",
+				"label": {
+					"ar": "صوره",
+					"en": "img"
+				},
+				"info": {
+					"ar": "نص توضيحي",
+					"en": "info text"
+				}
+			}
+		}
+	}
   }
 }
 {% endschema %}
