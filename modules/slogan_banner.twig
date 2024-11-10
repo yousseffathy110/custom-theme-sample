@@ -1,0 +1,103 @@
+<section class="slogan">
+	<div class="container slogan_text">
+		<h3>{{settings.heading}}</h3>
+		<p>{{settings.sub_text}}</p>
+		<a href="/">{{settings.link}}</a>
+	</div>
+</section>
+
+<style>
+	.slogan {
+		background: url('{{settings.background_image}}') no-repeat center / cover;
+		height: 574px;
+		width: 100%;
+		margin-top: 50px;
+		color: white;
+		align-content: center;
+		position: relative;
+		z-index: 1;
+	}
+	.slogan::after {
+		content: "";
+		background: #00000080;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+	}
+	.slogan_text {
+		z-index: 3;
+        position: relative;
+	}
+	.slogan h3 {
+		font-weight: 700;
+		font-size: 3rem;
+		line-height: 57.6px;
+	}
+	.slogan p {
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 19.2px;
+		max-width: 520px;
+	}
+	.slogan a {
+		display: inline-block;
+		background: #191919;
+		padding: 10px 40px;
+		text-align: center;
+		line-height: 19.2px;
+		font-size: 1rem;
+		font-weight: 700px;
+		border: none;
+		border-radius: 10px;
+		color: white;
+		margin-top: 10px;
+	}
+</style>
+
+{% schema %}
+{
+  "name": {
+    "ar": "بانر الشعار",
+    "en": "slogan banner"
+  },
+  "icon": "fal fa-presentation",
+  "display": true,
+  "settings": {
+        "heading": {
+            "type": "text",
+            "label": {
+                "ar": "نص",
+                "en": "show more"
+            }
+        },
+        "sub_text": {
+            "type": "text",
+            "label": {
+                "ar": "نص فرعي",
+                "en": "tittle text"
+            }
+        },
+        "link": {
+            "type": "text",
+            "label": {
+                "ar": "نص اللينك",
+                "en": "sub text"
+            }
+        },
+        "background_image": {
+            "type": "image",
+            "label": {
+                "ar": "صوره الخلفيه",
+                "en": "background image"
+            },
+            "info": {
+                "ar": "نص توضيحي",
+                "en": "info text"
+            }
+        }
+    }
+}
+{% endschema %}
