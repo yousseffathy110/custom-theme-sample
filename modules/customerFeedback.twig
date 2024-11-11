@@ -1,0 +1,238 @@
+<section class="testimonials" section-id="{{ sectionId }}" data-lg-scroll-offset="130" data-md-scroll-offset="130" data-sm-scroll-offset="94">
+	<div class="container section-slider-padding-space slider-container testimonial">
+		<div class="testimonials_section_header mt-3 mb-3 container d-flex align-items-center justify-content-between">
+			<div class="testimonials_section_header_inner">
+				<h2 class="section-title theme-text-primary">{{ settings.title }}</h2>
+				<p class="section_desc">{{ settings.desc }}</p>
+			</div>
+			<div class="swiper_arrows_testimonials d-flex align-items-center flex-row-reverse">
+				<div class="swiper-button-prev testimonials_prev_arows"></div>
+				<div class="swiper-button-next testimonials_next_arows"></div>
+			</div>
+		</div>
+
+		<!-- Swiper Container -->
+		<div class="testimonials-slider">
+			<div class="swiper-wrapper">
+				{% for key, testimonial in settings.testimonials %}
+					<div class="swiper-slide testimonials-customer-card bg-transparent">
+						<div class="card-body" style="max-width: -webkit-fill-available; max-width: 100%;">
+							<div class="d-flex header_card">
+								<div>
+									<img src="{{ testimonial.image }}" alt="{{ testimonial.name }}" class="testimonials-customer-icon">
+								</div>
+								<div>
+									<h2 class="testimonials-customer-name">{{ testimonial.name }}</h2>
+									<p class="testimonials-customer-job">{{ testimonial.job }}</p>
+								</div>
+							</div>
+
+							{% if testimonial.rating %}
+								<div>
+									{% include 'rating-stars.twig' with {'rating' : testimonial.rating } %}
+								</div>
+							{% endif %}
+
+							<p class="testimonials-customer-text mt-3 d-flex items-center justify-content-center">
+								<span class="quote-mark">”</span>
+								{{ testimonial.text }}
+								<span class="quote-mark">“</span>
+							</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.testimonial .section-title {
+		color: #750e21;
+		font-weight: bold;
+		font-size: clamp(1.25rem, 0.9859rem + 1.1268vw, 2rem);
+	}
+	.testimonial .section_desc {
+		color: #7f585f;
+		font-size: clamp(1rem, 0.8504rem + 0.6385vw, 1.425rem);
+		font-weight: 300;
+	}
+	.header_card {
+		gap: 20px;
+	}
+	.testimonials-slider {
+		overflow: hidden !important;
+	}
+	.header_card .testimonials-customer-job {
+		font-size: clamp(10px, 1.5vw + 2px, 10px);
+	}
+	.testimonials-customer-icon {
+		border-radius: 50%;
+		width: 60px;
+		height: 60px;
+	}
+	.testimonials-customer-text {
+		color: #636363;
+		line-height: 1.6;
+		position: relative;
+		margin-right: 0 !important;
+		white-space: normal;
+		gap: 20px;
+		text-align: center;
+		width: 86%;
+	}
+	.testimonials-customer-text .quote-mark {
+		font-size: 3em;
+		color: #ccc;
+		vertical-align: top;
+	}
+	.testimonials-customer-text .quote-mark:first-child {
+		position: absolute;
+		top: -24px;
+		right: -15px;
+	}
+	.testimonials-customer-text .quote-mark:last-child {
+		position: absolute;
+		bottom: -49px;
+		left: -10px;
+	}
+
+	/* Navigation Styling */
+	.testimonials_section_header .swiper_arrows_testimonials {
+		gap: 28px;
+	}
+	.testimonials_section_header .swiper_arrows_testimonials .swiper-button-next,
+	.testimonials_section_header .swiper_arrows_testimonials .swiper-button-prev {
+		position: relative;
+		border: 1px solid #FFD3BA;
+		border-radius: 50%;
+		padding: 10px;
+		width: 45px !important;
+		height: 45px !important;
+		color: #E3651D;
+		z-index: 0 !important;
+	}
+	.testimonials_section_header .swiper_arrows_testimonials .swiper-button-next::after,
+	.testimonials_section_header .swiper_arrows_testimonials .swiper-button-prev::after {
+		font-size: clamp(0.938rem, 0.7841rem + 0.6565vw, 1.375rem);
+		font-weight: bold;
+	}
+
+	@media(max-width: 992px) {
+		.testimonials_section_header .swiper_arrows_testimonials .swiper-button-next,
+		.testimonials_section_header .swiper_arrows_testimonials .swiper-button-prev {
+			padding: 15px;
+			width: 35px !important;
+			height: 35px !important;
+		}
+	}
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper('.testimonials-slider', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.swiper_arrows_testimonials .swiper-button-next',
+        prevEl: '.swiper_arrows_testimonials .swiper-button-prev'
+      },
+      breakpoints: {
+        580: {
+          slidesPerView: 2
+        },
+        900: {
+          slidesPerView: 3
+        }
+      }
+    });
+  });
+</script>
+
+
+{% schema %}
+{
+    "name": {
+        "ar": "أراء العملاء",
+        "en": "Testimonials"
+    },
+    "icon": "fal fa-user",
+    "display": true,
+    "settings": {
+        "title": {
+            "type": "text",
+            "label": {
+                "ar": "العنوان",
+                "en": "Title"
+            }
+        },
+        "desc": {
+            "type": "text",
+            "label": {
+                "ar": "الوصف",
+                "en": "Description"
+            }
+        },
+        "testimonials": {
+            "type": "list",
+            "noLabel": true,
+            "maxItems": 12,
+            "settings_label": {
+                "ar": "رأي العميل",
+                "en": "Testimonial"
+            },
+            "settings": {
+                "name": {
+                    "type": "text",
+                    "label": {
+                        "ar": "الإسم",
+                        "en": "Name"
+                    }
+                },
+                "image": {
+                    "type": "image",
+                    "label": {
+                        "ar": "ادخل الصوره",
+                        "en": "Image"
+                    }
+                },
+                "job": {
+                    "type": "text",
+                    "label": {
+                        "ar": "الوظيفة",
+                        "en": "Job"
+                    }
+                },
+                "rating": {
+                    "type": "number",
+                    "label": {
+                        "ar": "التقييم",
+                        "en": "Rating"
+                    },
+                    "min": 0,
+                    "max": 5
+                },
+                "text": {
+                    "type": "textarea",
+                    "label": {
+                        "ar": "النص",
+                        "en": "Text"
+                    }
+                }
+            }
+        }
+    },
+    "hide_dots": {
+        "type": "checkbox",
+        "label": {
+            "ar": " ",
+            "en": " "
+        },
+        "option": {
+            "ar": "إخفاء النقاط",
+            "en": "Hide dots"
+        },
+        "noLabel": true
+    }
+}
+{% endschema %}
